@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <style type="text/css">
+        #container {
+            width: 50px;
+            height: 50px;
+            border: 2px solid red;
+            position: fixed;
+        }
+    </style>
+</head>
+<body>
+    A<input type="radio" name="" checked="checked">
+    <div id="container"></div>
+<script>
+
+    var container = document.getElementById('container');
+
+    container.addEventListener('touchmove', function(e) {
+        e = e || window.event;
+
+        this.style.left = e.touches[0].pageX + 'px';
+        this.style.top = e.touches[0].pageY + 'px';
+    }, false)
+
+
+function A(op) {
+    this.b = 2
+
+    for(let prop in op) {
+        if(op.hasOwnProperty(prop)) {
+            this[prop] = op[prop]
+        }
+    }
+}
+
+function B() {
+    this.a = 1
+    //A.apply(this, arguments)
+}
+//B.prototype = Object.create(A.prototype);
+//B.prototype.constructor = B;
+
+var ins = new B({c: 3});
+
+console.log(ins.constructor === B);
+console.log(ins instanceof A);
+console.log(ins.a);
+console.log(ins.b);
+console.log(ins.c);
+</script>
+</body>
+</html>
