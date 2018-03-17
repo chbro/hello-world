@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+<script>
+    Number.prototype.fN = function () {
+        var arr = String(this).split('')
+        var cnt = 0
+
+        for(var i = arr.length - 1; i > 0; i--) {
+            cnt++
+            if (cnt % 3 === 0) {
+                arr.splice(i, 1, ',', arr[i])
+            }
+        }
+        return arr.join('')
+    }
+
+    var _log = console.log
+    console.log = (function() {
+        var seed = 1
+        return function(v) {
+            _log.call(window.console, (seed++) + ':', v)
+        }
+    })()
+
+    var func = arr => {
+        var res = 0
+        arr.forEach(v => {
+            res += v * v
+        })
+        return res
+    }
+    var f = function() {
+        var args = [].slice.call(arguments)
+        var _f = function () {
+            args = args.concat([].slice.call(arguments))
+            _f.value = func.call(null, args)
+            return _f
+        }
+
+        _f()
+        return _f
+    }
+
+</script>
+</body>
+</html>
